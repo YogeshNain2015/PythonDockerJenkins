@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-py -m venv myenv
+RUN py -m venv myenv
 RUN .\myenv\Scripts\activate
 RUN pip install django
 RUN pip freeze > requirements.txt
