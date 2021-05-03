@@ -4,9 +4,13 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-RUN py -m venv myenv
-RUN .\myenv\Scripts\activate
+
+RUN python -m pip install --user virtualenv
+RUN cd /usr/src/app
+RUN python -m venv myenv
+RUN su
+RUN . myenv/bin/activate
 RUN pip install django
 RUN pip freeze > requirements.txt
-RUN python manage.py runserver
+
 CMD [ "exec", "-it", "sh" ]
